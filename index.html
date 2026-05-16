@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Python Project Challenge Hub</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for code readability and aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .code-area {
+            font-family: 'Consolas', 'Monaco', monospace;
+            min-height: 150px;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #1e293b; /* Dark slate background for code */
+            color: #e2e8f0; /* Light text color */
+            width: 100%;
+            box-sizing: border-box;
+            resize: vertical;
+            white-space: pre-wrap;
+            border: 1px solid #334155;
+            transition: all 0.2s;
+        }
+        .code-area:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* Indigo focus ring */
+        }
+        .solution-code {
+            background-color: #0f172a; /* Even darker background for solution */
+            color: #4ade80; /* Green text for correct code */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <header class="text-center mb-10 p-6 bg-white shadow-xl rounded-xl">
+        <h1 class="text-4xl font-extrabold text-gray-900">The 50 Python Projects Challenge</h1>
+        <p class="text-gray-500 mt-2 text-lg">Structured learning from Basic concepts to Advanced Pythonic patterns.</p>
+    </header>
+
+    <main id="projects-container" class="space-y-10 max-w-6xl mx-auto">
+        <!-- Projects will be dynamically grouped and injected here by JavaScript -->
+    </main>
+
+    <footer class="text-center mt-12 p-4 text-gray-500 text-sm">
+        <p>This is a simulated code environment. Code is checked against a stored solution for learning purposes.</p>
+    </footer>
+
+    <script>
+        // --- HARDCODED PROJECT DATA (50 Projects) ---
+        const PYTHON_PROJECTS = [
+            // --- 15 BASIC PROJECTS ---
+            { id: 1, category: "Basic", title: "Greeting Generator", prompt: "Write a function `greet(name)` that returns 'Hello, [name]! Welcome to Python.'", solution: "def greet(name):\n    return f'Hello, {name}! Welcome to Python.'", explanation: "Uses an f-string (formatted string literal) which is the most modern and readable way to embed variables directly into strings in Python." },
+            { id: 2, category: "Basic", title: "Simple Calculator", prompt: "Write a function `add(a, b)` that returns the sum of two numbers.", solution: "def add(a, b):\n    return a + b", explanation: "A straightforward function demonstrating basic arithmetic and the `return` statement." },
+            { id: 3, category: "Basic", title: "Odd or Even Checker", prompt: "Write a function `is_even(n)` that returns `True` if a number `n` is even, and `False` otherwise.", solution: "def is_even(n):\n    return n % 2 == 0", explanation: "Uses the modulo operator (`%`) to check the remainder after division by 2. If the remainder is 0, the number is even." },
+            { id: 4, category: "Basic", title: "List Sum", prompt: "Write a function `sum_list(numbers)` that calculates the sum of all elements in a given list of integers.", solution: "def sum_list(numbers):\n    total = 0\n    for num in numbers:\n        total += num\n    return total", explanation: "Iterates through the list using a `for` loop and accumulates the total in a variable. Alternatively, you could use `return sum(numbers)`." },
+            { id: 5, category: "Basic", title: "Factorial Finder (Iterative)", prompt: "Write a function `factorial_iterative(n)` that calculates the factorial of a positive integer `n` using a loop.", solution: "def factorial_iterative(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= i\n    return result", explanation: "Initializes a result to 1 and uses the `range()` function to loop from 1 up to (and including) `n`, multiplying the result in each iteration." },
+            { id: 6, category: "Basic", title: "String Reverser", prompt: "Write a function `reverse_string(s)` that reverses the given string `s` using slicing.", solution: "def reverse_string(s):\n    return s[::-1]", explanation: "Python's string slicing feature `[start:stop:step]` is used. A step of `-1` reverses the entire string in one line. This is the most Pythonic way." },
+            { id: 7, category: "Basic", title: "Area of a Circle", prompt: "Write a function `circle_area(radius)` that calculates the area of a circle. Use `3.14159` for Pi.", solution: "def circle_area(radius):\n    PI = 3.14159\n    return PI * (radius ** 2)", explanation: "The area formula is $\\pi r^2$. We use the exponent operator `** 2` for squaring the radius." },
+            { id: 8, category: "Basic", title: "Vowel Counter", prompt: "Write a function `count_vowels(text)` that counts the number of vowels (a, e, i, o, u) in a given string, case-insensitive.", solution: "def count_vowels(text):\n    vowels = 'aeiou'\n    count = 0\n    for char in text.lower():\n        if char in vowels:\n            count += 1\n    return count", explanation: "The code converts the input to lowercase first (`.lower()`) and then checks if each character exists within the predefined `vowels` string." },
+            { id: 9, category: "Basic", title: "Max of Three Numbers", prompt: "Write a function `max_of_three(a, b, c)` that returns the largest of the three input numbers.", solution: "def max_of_three(a, b, c):\n    return max(a, b, c)", explanation: "Python provides a built-in `max()` function that can accept multiple positional arguments, making this problem simple and efficient." },
+            { id: 10, category: "Basic", title: "Fahrenheit to Celsius", prompt: "Write a function `f_to_c(f)` to convert Fahrenheit temperature `f` to Celsius. Formula: $(\\text{C} = (\\text{F} - 32) \\times 5/9)$", solution: "def f_to_c(f):\n    return (f - 32) * 5 / 9", explanation: "A direct application of the conversion formula. Parentheses ensure that subtraction occurs before multiplication/division." },
+            { id: 11, category: "Basic", title: "Simple List Filtering", prompt: "Write a function `filter_positive(numbers)` that returns a new list containing only the positive numbers from the input list.", solution: "def filter_positive(numbers):\n    positive_list = []\n    for num in numbers:\n        if num > 0:\n            positive_list.append(num)\n    return positive_list", explanation: "Iterates through the list, using an `if` condition to check for positivity, and appends only those numbers to a new list." },
+            { id: 12, category: "Basic", title: "Square Root Finder", prompt: "Write a function `safe_sqrt(n)` that returns the square root of a number `n`. Use the `math.sqrt` function (you must import `math`).", solution: "import math\n\ndef safe_sqrt(n):\n    return math.sqrt(n)", explanation: "Requires importing the built-in `math` module to access the `sqrt` function. This demonstrates module usage." },
+            { id: 13, category: "Basic", title: "Count Word Frequency", prompt: "Write a function `count_words(words)` that takes a list of strings and returns a dictionary where keys are the words and values are their counts.", solution: "def count_words(words):\n    word_counts = {}\n    for word in words:\n        word_counts[word] = word_counts.get(word, 0) + 1\n    return word_counts", explanation: "Uses the dictionary's `.get(key, default)` method to increment the count if the key exists, or set it to 1 if it's new, avoiding a `KeyError`." },
+            { id: 14, category: "Basic", title: "Check for Empty List", prompt: "Write a function `is_empty(lst)` that returns `True` if the list `lst` is empty, and `False` otherwise.", solution: "def is_empty(lst):\n    return not lst", explanation: "In Python, an empty list, string, dictionary, or tuple evaluates to `False` in a boolean context. Therefore, `not lst` returns `True` if the list is empty." },
+            { id: 15, category: "Basic", title: "Simple Multiplier", prompt: "Write a function `multiply(a, b)` that multiplies two numbers without using the `*` operator (use repeated addition).", solution: "def multiply(a, b):\n    result = 0\n    for _ in range(abs(b)):\n        result += abs(a)\n    if (a < 0 and b > 0) or (a > 0 and b < 0):\n        return -result\n    return result", explanation: "This simulates multiplication using a loop for repeated addition. It must handle the sign of the result separately by checking if one and only one of the inputs is negative." },
+
+            // --- 15 BUILDING BLOCKS PROJECTS ---
+            { id: 16, category: "Building Blocks", title: "List Comprehension Squares", prompt: "Use list comprehension to write a function `squares_list(n)` that returns a list of squares for numbers from 1 up to `n` (inclusive).", solution: "def squares_list(n):\n    return [i * i for i in range(1, n + 1)]", explanation: "A list comprehension `[expression for item in iterable]` is a concise way to create lists. This example iterates using `range(1, n+1)` and squares each item." },
+            { id: 17, category: "Building Blocks", title: "Guessing Game Logic", prompt: "Write a function `check_guess(target, guess)` that returns 'Too High', 'Too Low', or 'Correct' based on the user's guess against the target number.", solution: "def check_guess(target, guess):\n    if guess == target:\n        return 'Correct'\n    elif guess < target:\n        return 'Too Low'\n    else:\n        return 'Too High'", explanation: "Uses an `if-elif-else` structure, a foundational control flow pattern, to determine the relationship between the two numerical inputs." },
+            { id: 18, category: "Building Blocks", title: "Prime Number Checker", prompt: "Write a function `is_prime(n)` that returns `True` if `n` is a prime number, and `False` otherwise.", solution: "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True", explanation: "Includes the optimization of only checking divisors up to the square root of `n` to improve performance, as any composite number must have at least one factor less than or equal to its square root." },
+            { id: 19, category: "Building Blocks", title: "Fibonacci Sequence", prompt: "Write a function `fibonacci(n)` that returns a list containing the first `n` numbers of the Fibonacci sequence.", solution: "def fibonacci(n):\n    sequence = [0, 1]\n    if n <= 1:\n        return sequence[:n]\n    while len(sequence) < n:\n        next_num = sequence[-1] + sequence[-2]\n        sequence.append(next_num)\n    return sequence", explanation: "Uses a `while` loop to continuously generate the next number (sum of the last two) until the list reaches the desired length `n`. Handles base cases (n=0, n=1) correctly." },
+            { id: 20, category: "Building Blocks", title: "Simple Student Class", prompt: "Define a class `Student` with an `__init__` method that accepts `name` and `grade`, and a method `get_info(self)` that returns a string: '[Name] is in grade [Grade]'.", solution: "class Student:\n    def __init__(self, name, grade):\n        self.name = name\n        self.grade = grade\n\n    def get_info(self):\n        return f'{self.name} is in grade {self.grade}.'", explanation: "This introduces Object-Oriented Programming (OOP). The `__init__` method is the constructor, and `self` is the reference to the instance itself, used to hold instance-specific data." },
+            { id: 21, category: "Building Blocks", title: "Dictionary Merge", prompt: "Write a function `merge_dicts(d1, d2)` that merges two dictionaries, `d1` and `d2`, prioritizing values from `d2` in case of key conflicts. Use the dictionary unpacking operator.", solution: "def merge_dicts(d1, d2):\n    return {**d1, **d2}", explanation: "The dictionary unpacking operator (`**`) is used. When merging dictionaries this way, the right-most dictionary (`d2`) overwrites keys that already exist in the left-most one (`d1`), fulfilling the requirement." },
+            { id: 22, category: "Building Blocks", title: "Duplicate Remover (Set)", prompt: "Write a function `remove_duplicates(lst)` that takes a list and returns a new list containing only the unique elements. Use the `set` data structure.", solution: "def remove_duplicates(lst):\n    # Convert list to a set to remove duplicates, then back to a list\n    return list(set(lst))", explanation: "The `set` data structure inherently stores only unique elements. Converting the list to a set automatically removes duplicates, and converting it back to a list is required for the final output format." },
+            { id: 23, category: "Building Blocks", title: "Tuple Swapper", prompt: "Write a function `swap_tuple(t)` that takes a two-element tuple `(a, b)` and returns a new tuple `(b, a)`. Use Python's tuple unpacking/packing feature.", solution: "def swap_tuple(t):\n    a, b = t\n    return (b, a)", explanation: "This demonstrates tuple unpacking and packing. The first line unpacks the input tuple `t` into variables `a` and `b`. The second line packs them into a new tuple in reverse order." },
+            { id: 24, category: "Building Blocks", title: "Caesar Cipher Encoder (Shift 3)", prompt: "Write a function `encode_caesar(text)` that shifts every letter in the input string by 3 positions (A becomes D, Z becomes C). Ignore case and non-alphabetic characters.", solution: "def encode_caesar(text):\n    result = ''\n    for char in text.upper():\n        if 'A' <= char <= 'Z':\n            # Apply shift of 3, wrap around using modulo 26\n            shifted_char = chr(((ord(char) - ord('A') + 3) % 26) + ord('A'))\n            result += shifted_char\n        else:\n            result += char\n    return result", explanation: "Uses `ord()` and `chr()` to convert letters to their ASCII numerical representation, perform the shift calculation, and then convert back to a character. The modulo operator (`% 26`) handles the wrap-around from Z back to A." },
+            { id: 25, category: "Building Blocks", title: "Flatten Nested List", prompt: "Write a function `flatten_list(nested_list)` that takes a list of lists (e.g., `[[1, 2], [3], [4, 5]]`) and returns a single, flat list (e.g., `[1, 2, 3, 4, 5]`).", solution: "def flatten_list(nested_list):\n    flat_list = []\n    for sublist in nested_list:\n        flat_list.extend(sublist)\n    return flat_list", explanation: "The `extend()` method is ideal here; it appends the elements of an iterable (the sublist) to the end of the current list, effectively flattening one level of nesting." },
+            { id: 26, category: "Building Blocks", title: "Simple Exception Handling", prompt: "Write a function `safe_divide(a, b)` that performs division and uses a `try...except` block to return 'Cannot divide by zero' if a `ZeroDivisionError` occurs.", solution: "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 'Cannot divide by zero'", explanation: "The `try` block attempts the operation. If the specific error (`ZeroDivisionError`) occurs, the code execution immediately jumps to the `except` block, preventing the program from crashing." },
+            { id: 27, category: "Building Blocks", title: "Default Dictionary Creation", prompt: "Write a function `default_scores()` that returns a dictionary containing 3 student names (keys) and a default score of 0 for each (values).", solution: "def default_scores():\n    students = ['Alice', 'Bob', 'Charlie']\n    return dict.fromkeys(students, 0)", explanation: "The `dict.fromkeys(iterable, value)` class method is the most efficient way to create a dictionary where all keys from an iterable share the same initial value." },
+            { id: 28, category: "Building Blocks", title: "Check File Extension", prompt: "Write a function `get_extension(filename)` that takes a string filename and returns its extension (e.g., 'data.txt' returns 'txt'). Assume a simple period-separated name.", solution: "def get_extension(filename):\n    parts = filename.split('.')\n    if len(parts) > 1:\n        return parts[-1]\n    return None", explanation: "Uses the `.split('.')` method to break the string into parts. It returns the last element `parts[-1]`, which is the extension, only if a period exists." },
+            { id: 29, category: "Building Blocks", title: "Zip Two Lists into Dict", prompt: "Write a function `create_dict(keys, values)` that combines two lists of equal length into a dictionary where elements from the first list are keys and elements from the second are values. Use the `zip()` function.", solution: "def create_dict(keys, values):\n    return dict(zip(keys, values))", explanation: "The `zip()` function pairs corresponding elements from two or more iterables. Passing the resulting iterator directly to the `dict()` constructor creates the required dictionary." },
+            { id: 30, category: "Building Blocks", title: "Basic Sorting (Tuple List)", prompt: "Write a function `sort_by_second(data)` that sorts a list of tuples based on the second element of each tuple. Use a `lambda` function as the key.", solution: "def sort_by_second(data):\n    # Sorts the list of tuples based on the element at index 1\n    return sorted(data, key=lambda item: item[1])", explanation: "The `sorted()` function takes a `key` argument, which is a function used to extract a comparison key from each element. The `lambda item: item[1]` expression specifies the second element as the key." },
+
+            // --- 10 INTERMEDIATE PROJECTS ---
+            { id: 31, category: "Intermediate", title: "Binary Search (Iterative)", prompt: "Implement an iterative binary search function `binary_search(arr, target)` that finds the index of the `target` in the sorted list `arr`. Return -1 if not found.", solution: "def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1", explanation: "Binary search works by repeatedly halving the search interval. The `while` loop continues as long as `low <= high`. The interval is adjusted by setting `low` to `mid + 1` or `high` to `mid - 1` based on the comparison." },
+            { id: 32, category: "Intermediate", title: "Simple Hangman Logic", prompt: "Write a function `update_display(word, guesses)` that takes a target `word` and a list of `guesses`. It should return a string where unguessed letters are replaced by underscores (`_`).", solution: "def update_display(word, guesses):\n    display = ''\n    for letter in word:\n        if letter in guesses:\n            display += letter\n        else:\n            display += '_'\n    return display", explanation: "Iterates through the target word and checks for character membership in the set of guessed letters. This forms the core display logic of the game." },
+            { id: 33, category: "Intermediate", title: "Simple File Writer", prompt: "Write a function `write_to_file(filepath, content)` that uses a `with open(...)` statement to safely write the string `content` to the given `filepath` in write mode ('w').", solution: "def write_to_file(filepath, content):\n    try:\n        with open(filepath, 'w') as f:\n            f.write(content)\n        return f'Successfully wrote to {filepath}'\n    except Exception as e:\n        return f'Error writing file: {e}'", explanation: "The `with open(...)` construct is Python's recommended way for file operations, ensuring the file is automatically closed, even if errors occur." },
+            { id: 34, category: "Intermediate", title: "List Comprehension Filtering & Mapping", prompt: "Use list comprehension to write a function `double_even(numbers)` that doubles only the even numbers in a list, keeping the odds as they are.", solution: "def double_even(numbers):\n    return [n * 2 if n % 2 == 0 else n for n in numbers]", explanation: "This is a complex list comprehension that includes an `if/else` *before* the `for` loop. The structure `[expression IF condition ELSE expression FOR item in iterable]` applies a conditional transformation to every item." },
+            { id: 35, category: "Intermediate", title: "JSON Data Serialization", prompt: "Write a function `to_json(data)` that takes a Python dictionary `data` and returns it as a JSON formatted string. You must import the `json` module.", solution: "import json\n\ndef to_json(data):\n    return json.dumps(data, indent=4)", explanation: "The `json.dumps()` function serializes a Python object into a JSON string. Using `indent=4` makes the output readable, which is good practice." },
+            { id: 36, category: "Intermediate", title: "Class Method Example", prompt: "Define a class `Circle` with a class variable `PI = 3.14`. Add a class method `from_diameter(cls, diameter)` that returns a new `Circle` instance initialized with the calculated radius.", solution: "class Circle:\n    PI = 3.14\n\n    def __init__(self, radius):\n        self.radius = radius\n\n    @classmethod\n    def from_diameter(cls, diameter):\n        radius = diameter / 2\n        return cls(radius)", explanation: "The `@classmethod` decorator receives the class itself (`cls`) as the first argument, allowing it to act as an alternative constructor for creating instances." },
+            { id: 37, category: "Intermediate", title: "Set Intersection", prompt: "Write a function `find_common_elements(set1, set2)` that returns a new set containing elements that are present in both input sets. Use the set intersection operator.", solution: "def find_common_elements(set1, set2):\n    return set1 & set2", explanation: "Python sets support mathematical operations. The ampersand operator (`&`) is syntactic sugar for the `intersection()` method, providing a clean way to find common elements." },
+            { id: 38, category: "Intermediate", title: "Basic Decorator Structure", prompt: "Define a decorator function `timing_decorator(func)` that simply prints 'Function [func_name] is about to run' before executing the decorated function.", solution: "def timing_decorator(func):\n    def wrapper(*args, **kwargs):\n        print(f'Function {func.__name__} is about to run')\n        return func(*args, **kwargs)\n    return wrapper\n\n@timing_decorator\ndef example_function():\n    return 'Done!'", explanation: "Decorators are functions that wrap other functions. The `wrapper` function handles the extra logic (printing the message) and then calls the original function (`func`). The `@` syntax is syntactic sugar for `example_function = timing_decorator(example_function)`." },
+            { id: 39, category: "Intermediate", title: "Handling Multiple Exceptions", prompt: "Write a function `safe_access(data, index)` that attempts to access `data[index]`. Use one `except` block to catch both `IndexError` (for lists) and `TypeError` (if `data` isn't indexable).", solution: "def safe_access(data, index):\n    try:\n        return data[index]\n    except (IndexError, TypeError):\n        return 'Error: Invalid index or unindexable object.'", explanation: "Multiple exceptions can be handled by providing them as a tuple `(ExceptionA, ExceptionB)` to a single `except` clause." },
+            { id: 40, category: "Intermediate", title: "CSV Data Processor (Dummy)", prompt: "Write a function `process_csv_line(line)` that takes a string line of CSV data (comma-separated) and returns a list of its parts.", solution: "def process_csv_line(line):\n    # Basic implementation using string split\n    return line.split(',')", explanation: "The `split()` string method is the fundamental tool for parsing delimiter-separated data like CSV. This function demonstrates its basic use." },
+
+            // --- 10 ADVANCED PROJECTS ---
+            { id: 41, category: "Advanced", title: "Generator for Fibonacci", prompt: "Write a generator function `fib_generator()` that yields Fibonacci numbers indefinitely.", solution: "def fib_generator():\n    a, b = 0, 1\n    while True:\n        yield a\n        a, b = b, a + b\n\n# Example usage: next(gen) to get values", explanation: "A generator uses `yield` instead of `return`. The `yield` keyword pauses the function and saves its local state, allowing it to resume exactly where it left off on the next call to `next()`." },
+            { id: 42, category: "Advanced", title: "Context Manager (File Close)", prompt: "Define a class `FileCloser` that implements the context manager protocol (`__enter__`, `__exit__`). In `__enter__`, open a file. In `__exit__`, ensure the file is closed.", solution: "class FileCloser:\n    def __init__(self, filepath, mode):\n        self.filepath = filepath\n        self.mode = mode\n        self.file = None\n\n    def __enter__(self):\n        self.file = open(self.filepath, self.mode)\n        return self.file\n\n    def __exit__(self, exc_type, exc_val, exc_tb):\n        if self.file:\n            self.file.close()\n        return False # Do not suppress exceptions", explanation: "Context managers are used with `with` statements. `__enter__` sets up the resource (opens the file) and returns it. `__exit__` handles cleanup (closes the file) and manages exceptions." },
+            { id: 43, category: "Advanced", title: "Static Method Example", prompt: "Define a class `MathUtils` with a static method `is_perfect_square(n)` that returns `True` if `n` is a perfect square. Use `math.sqrt`.", solution: "import math\n\nclass MathUtils:\n    @staticmethod\n    def is_perfect_square(n):\n        if n < 0:\n            return False\n        root = math.isqrt(n) # Integer square root\n        return root * root == n", explanation: "A `@staticmethod` is a method that belongs to the class but does not take `self` or `cls` as arguments. It is conceptually related to the class but operates independently of any specific instance or class state." },
+            { id: 44, category: "Advanced", title: "Property Getter/Setter", prompt: "Define a class `Temperature` with a property `celsius` that is automatically converted to `fahrenheit` (and vice-versa) using `@property` and `@celsius.setter` decorators. (F = C * 9/5 + 32).", solution: "class Temperature:\n    def __init__(self, celsius):\n        self._celsius = celsius\n\n    @property\n    def celsius(self):\n        return self._celsius\n\n    @celsius.setter\n    def celsius(self, value):\n        self._celsius = value\n\n    @property\n    def fahrenheit(self):\n        return self._celsius * 9 / 5 + 32", explanation: "Properties allow attribute access to be managed by methods. The standard `@property` is the getter, and the setter is defined using `@<property_name>.setter`. We use a convention (e.g., `_celsius`) to store the actual data privately." },
+            { id: 45, category: "Advanced", title: "Simple Regex Validation", prompt: "Write a function `is_valid_email(text)` that returns `True` if the string `text` matches a basic email pattern (e.g., `name@domain.com`). Use the `re` module.", solution: "import re\n\ndef is_valid_email(text):\n    # Simple pattern: one or more characters, '@', one or more characters, '.', two or more characters\n    pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'\n    return bool(re.match(pattern, text))", explanation: "Uses the `re.match()` function to check if the pattern matches the *beginning* of the string. Regular expressions (`re`) are essential for advanced string manipulation and validation." },
+            { id: 46, category: "Advanced", title: "Using `*args` and `**kwargs`", prompt: "Write a function `log_details(*args, **kwargs)` that prints all positional arguments (`args`) followed by all keyword arguments (`kwargs`).", solution: "def log_details(*args, **kwargs):\n    print('Positional Arguments:', args)\n    print('Keyword Arguments:', kwargs)\n\n# Example call: log_details(1, 2, name='Alice', age=30)", explanation: "`*args` collects any number of non-keyword (positional) arguments into a tuple. `**kwargs` collects any number of keyword arguments into a dictionary." },
+            { id: 47, category: "Advanced", title: "Recursive Directory Listing (Dummy)", prompt: "Write a recursive function `recursive_list(path)` that pretends to list the content of a directory. For this simulation, just return 'Simulating recursive listing for ' + path.", solution: "def recursive_list(path):\n    # In a real scenario, you'd use os.listdir and os.path.isdir\n    # to call the function on subdirectories.\n    if path == 'base':\n        return ['file1.txt', recursive_list('sub_dir1')]\n    elif path == 'sub_dir1':\n        return ['subfile.py']\n    return f'Simulating recursive listing for {path}'", explanation: "Recursion is fundamental for traversing tree structures like file systems. The key is the 'base case' (a path with no subfolders) and the 'recursive step' (calling the function itself on subfolders)." },
+            { id: 48, category: "Advanced", title: "Custom Iterator Class", prompt: "Define a class `CustomRange` that acts like Python's `range()` by implementing `__iter__` and `__next__` to iterate from `start` to `end` (exclusive).", solution: "class CustomRange:\n    def __init__(self, start, end):\n        self.current = start\n        self.end = end\n\n    def __iter__(self):\n        return self\n\n    def __next__(self):\n        if self.current < self.end:\n            val = self.current\n            self.current += 1\n            return val\n        raise StopIteration", explanation: "This makes the class iterable. `__iter__` returns the iterator itself (i.e., `self`). `__next__` provides the next value until the condition fails, at which point it must raise `StopIteration` to signal the end of iteration." },
+            { id: 49, category: "Advanced", title: "Using `map` and `filter`", prompt: "Write a function `process_numbers(numbers)` that uses the `map` function to square all elements and the `filter` function to keep only results greater than 10. Return the result as a list.", solution: "def process_numbers(numbers):\n    # 1. Square all numbers using map and a lambda\n    squared = map(lambda x: x * x, numbers)\n    # 2. Filter the squared results to be > 10\n    filtered = filter(lambda x: x > 10, squared)\n    # 3. Convert the iterator back to a list\n    return list(filtered)", explanation: "`map()` applies a function (here, squaring via lambda) to every item in an iterable. `filter()` constructs an iterator from elements that return true for the function (here, greater than 10). Both are lazy iterators and must be cast to a list to see the final result." },
+            { id: 50, category: "Advanced", title: "Shallow vs. Deep Copy", prompt: "Write a function `modify_list(original)` that creates a *deep copy* of `original` and modifies the first element of the copied list. Return the modified copy. You must import the `copy` module.", solution: "import copy\n\ndef modify_list(original):\n    # Creates a deep copy, meaning nested objects are also duplicated\n    copied_list = copy.deepcopy(original)\n    # Modify the copy\n    copied_list[0] = 'MODIFIED'\n    return copied_list", explanation: "The `copy.deepcopy()` function creates a new object and recursively copies all objects found within the original, ensuring changes to the copy do not affect the original, which is crucial for complex data structures." }
+        ];
+
+        // --- CORE LOGIC FUNCTIONS ---
+
+        /**
+         * Groups projects by category and renders the full UI.
+         */
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+
+            const projectsByCategory = PYTHON_PROJECTS.reduce((acc, project) => {
+                if (!acc[project.category]) {
+                    acc[project.category] = [];
+                }
+                acc[project.category].push(project);
+                return acc;
+            }, {});
+
+            const categoryOrder = ["Basic", "Building Blocks", "Intermediate", "Advanced"];
+
+            categoryOrder.forEach((category) => {
+                const projects = projectsByCategory[category];
+                if (!projects) return;
+
+                const cardStyle = getCategoryCardStyle(category);
+                const titleText = `${category} (${projects.length} Problems)`;
+
+                // Create Collapsible Section
+                const section = document.createElement('div');
+                section.className = 'rounded-xl shadow-2xl bg-white overflow-hidden';
+
+                // Header for Collapse
+                section.innerHTML = `
+                    <button class="w-full text-left p-6 flex justify-between items-center transition duration-200 focus:outline-none ${cardStyle.bg} hover:${cardStyle.hoverBg}" 
+                            onclick="toggleSection(this, 'content-${category.replace(/\s/g, '_')}')">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white">${titleText}</h2>
+                        <svg id="arrow-${category.replace(/\s/g, '_')}" class="w-6 h-6 text-white transform rotate-0 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="content-${category.replace(/\s/g, '_')}" class="p-6 space-y-8 hidden">
+                        <!-- Project Cards will go here -->
+                    </div>
+                `;
+                container.appendChild(section);
+
+                const contentDiv = document.getElementById(`content-${category.replace(/\s/g, '_')}`);
+
+                projects.forEach(project => {
+                    const projectCard = createProjectCard(project);
+                    contentDiv.appendChild(projectCard);
+                });
+            });
+        }
+
+        /**
+         * Toggles the visibility of a section and rotates the arrow icon.
+         */
+        function toggleSection(button, contentId) {
+            const content = document.getElementById(contentId);
+            const arrow = document.getElementById(`arrow-${contentId.split('-')[1]}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                arrow.classList.remove('rotate-0');
+                arrow.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+                arrow.classList.add('rotate-0');
+            }
+        }
+
+        /**
+         * Returns the Tailwind style for a category card.
+         */
+        function getCategoryCardStyle(category) {
+            switch (category) {
+                case "Basic": return { bg: 'bg-green-600', hoverBg: 'bg-green-700' };
+                case "Building Blocks": return { bg: 'bg-yellow-600', hoverBg: 'bg-yellow-700' };
+                case "Intermediate": return { bg: 'bg-indigo-600', hoverBg: 'bg-indigo-700' };
+                case "Advanced": return { bg: 'bg-red-600', hoverBg: 'bg-red-700' };
+                default: return { bg: 'bg-gray-600', hoverBg: 'bg-gray-700' };
+            }
+        }
+
+        /**
+         * Creates a single project card element.
+         */
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.id = `project-${project.id}`;
+            card.className = 'bg-gray-50 p-6 md:p-8 rounded-xl shadow-lg border-t-2 border-gray-200';
+            
+            card.innerHTML = `
+                <h3 class="text-xl font-semibold mb-3 text-gray-800">${project.id}. ${project.title} <span class="text-sm font-medium text-indigo-500 ml-2">(${project.category})</span></h3>
+                
+                <!-- Problem Statement -->
+                <div class="text-lg text-gray-600 mb-6 border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-lg">
+                    <p class="font-medium text-yellow-800 mb-1">Problem Statement:</p>
+                    <p>${project.prompt}</p>
+                </div>
+
+                <!-- User Code Area -->
+                <div class="code-container mb-4">
+                    <label for="code-${project.id}" class="block text-gray-700 font-medium mb-2">Your Python Code:</label>
+                    <textarea id="code-${project.id}" class="code-area focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                </div>
+                
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6">
+                    <button onclick="checkCode(${project.id})" 
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-150 shadow-md flex-grow active:scale-[0.99]">
+                        Check Code
+                    </button>
+                    <button onclick="showAnswer(${project.id})" 
+                        class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 px-6 rounded-lg transition duration-150 shadow-md flex-grow-0 active:scale-[0.99]">
+                        Show Answer
+                    </button>
+                </div>
+
+                <!-- Feedback and Solution Area -->
+                <div id="feedback-${project.id}" class="mt-4 p-4 rounded-lg hidden">
+                    <!-- Feedback content goes here -->
+                </div>
+            `;
+            return card;
+        }
+
+        /**
+         * Handles the "Check Code" button click (simulated check).
+         */
+        function checkCode(id) {
+            const project = PYTHON_PROJECTS.find(p => p.id === id);
+            const codeInput = document.getElementById(`code-${id}`).value.trim();
+            const feedbackDiv = document.getElementById(`feedback-${id}`);
+
+            if (!project) return;
+
+            if (codeInput === "") {
+                setFeedback(feedbackDiv, 'bg-yellow-100 border-yellow-500 text-yellow-800', '<p class="font-bold">Heads up!</p><p>Please write your code in the box above before checking it.</p>');
+                return;
+            }
+
+            // Simple "correct" check: Check for basic content match (ignoring whitespace and case for leniency)
+            const isCorrect = (
+                codeInput.replace(/\s/g, '').toLowerCase().includes(project.solution.replace(/\s/g, '').toLowerCase().substring(0, 10)) &&
+                codeInput.replace(/\s/g, '').toLowerCase().length >= project.solution.replace(/\s/g, '').toLowerCase().length * 0.8
+            );
+
+            if (isCorrect) {
+                setFeedback(feedbackDiv, 'bg-green-100 border-green-500 text-green-800', '<p class="font-bold text-xl">🎉 Correct!</p><p>Your code looks right! Move on to the next challenge.</p>');
+            } else {
+                showSolutionContent(project, feedbackDiv, codeInput, false);
+                feedbackDiv.classList.remove('hidden');
+            }
+        }
+
+        /**
+         * Handles the "Show Answer" button click.
+         */
+        function showAnswer(id) {
+            const project = PYTHON_PROJECTS.find(p => p.id === id);
+            const feedbackDiv = document.getElementById(`feedback-${id}`);
+            const codeInput = document.getElementById(`code-${id}`).value.trim();
+
+            if (!project) return;
+            
+            showSolutionContent(project, feedbackDiv, codeInput, true);
+            feedbackDiv.classList.remove('hidden');
+        }
+
+        /**
+         * Sets the feedback message and styling.
+         */
+        function setFeedback(div, classes, htmlContent) {
+            div.className = `mt-4 p-4 rounded-lg border-l-4 ${classes}`;
+            div.innerHTML = htmlContent;
+        }
+
+        /**
+         * Builds the content for showing the solution and explanation.
+         */
+        function showSolutionContent(project, feedbackDiv, codeInput, isAnswerClick) {
+            let userFeedback = '';
+            let bgClass = 'bg-red-100 border-red-500 text-red-800';
+
+            if (isAnswerClick) {
+                userFeedback = codeInput === "" 
+                    ? '<p class="font-bold mb-3">You chose to view the answer without writing code. Study this solution carefully!</p>'
+                    : '<p class="font-bold mb-3">Here is the official solution. Compare it with your attempt above to find areas for improvement.</p>';
+                bgClass = 'bg-indigo-100 border-indigo-500 text-indigo-800';
+            } else {
+                userFeedback = '<p class="font-bold mb-3">Your code did not pass the simulated checks. Review the correct solution and explanation below:</p>';
+            }
+
+            setFeedback(feedbackDiv, bgClass, `
+                ${userFeedback}
+                <div class="space-y-4 pt-2">
+                    <!-- Correct Code Block -->
+                    <div>
+                        <h4 class="font-semibold text-lg text-gray-800 mb-2">The Correct Python Solution:</h4>
+                        <pre class="solution-code text-base">${project.solution}</pre>
+                    </div>
+
+                    <!-- Explanation Block -->
+                    <div>
+                        <h4 class="font-semibold text-lg text-gray-800 mb-2">Detailed Explanation:</h4>
+                        <p class="bg-gray-100 p-3 rounded-lg text-gray-700 text-sm">${project.explanation}</p>
+                    </div>
+                </div>
+            `);
+        }
+        
+        // Initialize the app on load
+        window.onload = () => {
+             // Make the first (Basic) section open by default
+            renderProjects();
+            const firstButton = document.querySelector('#projects-container button');
+            if (firstButton) {
+                firstButton.click();
+            }
+        };
+
+        // Placeholder for API call structure if needed later
+        async function fetchContentWithRetry(apiUrl, payload) {
+            const apiKey = ""; 
+            console.warn("API call placeholder triggered. Code is checked client-side.");
+            return { text: "Simulated LLM response for code critique.", sources: [] };
+        }
+
+    </script>
+</body>
+</html>
